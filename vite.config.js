@@ -2,7 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // Production build is served from https://wamboldt-capital.github.io/Life-Roadmap/
+  base: command === 'build' ? '/Life-Roadmap/' : '/',
   plugins: [react()],
   server: {
     // Bind to all interfaces and accept proxied hosts so the live preview
@@ -12,4 +14,4 @@ export default defineConfig({
     strictPort: false,
     allowedHosts: true,
   },
-})
+}))
